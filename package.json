@@ -1,0 +1,19 @@
+{
+  "name": "docker-node-python",
+  "version": "1.0.0",
+  "description": "test of double docker python + node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BertrandMarechal/docker-node-python.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BertrandMarechal/docker-node-python/issues"
+  },
+  "homepage": "https://github.com/BertrandMarechal/docker-node-python#readme"
+}
