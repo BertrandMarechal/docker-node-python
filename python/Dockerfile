@@ -4,12 +4,12 @@ VOLUME /usr/src/app/data
 
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app
-
 RUN pip install imutils
 
 WORKDIR /usr/src/app
 
-EXPOSE 8080
+EXPOSE 8081
+
+COPY . /usr/src/app
 
 CMD ["python", "server.py"]

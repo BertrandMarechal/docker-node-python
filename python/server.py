@@ -10,7 +10,6 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         query_components = parse_qs(urlparse(self.path).query)
-        print(query_components)
         try:
             imagename = query_components["image"]
             # Send response status code
@@ -20,12 +19,11 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type','text/html')
             self.end_headers()
 
-            deskew_and_mrz.deskew_and_identify_mrz({"image": './images/bm.png', "output": './images/bm2.png'})
+            # call image processing
+            deskew_and_mrz.deskew_and_identify_mrz({"image": '/usr/src/app/data' + imagename, "output": '/usr/src/app/data' + imagename})
 
-            # Send message back to client
-            message = imagename[0]
             # Write content as utf-8 data
-            self.wfile.write(bytes(message, "utf8"))
+            self.wfile.write(bytes(imagename[0], "utf8"))
             return
         except AttributeError:
             # Send response status code
@@ -45,7 +43,7 @@ def run():
     print('starting server...')
     # Server settings
     # Choose port 8080, for port 80, which is normally used for a http server, you need root access
-    server_address = ('0.0.0.0', 8080)
+    server_address = ('0.0.0.0', 8081)
     # server_address = ('127.0.0.1', 8080)
     httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
     print('running server...')

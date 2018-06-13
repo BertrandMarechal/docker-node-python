@@ -1,13 +1,15 @@
 FROM node:8.9-8.9-alpine
 
-WORKDIR /usr/src/app
+VOLUME /usr/src/app/data
 
-COPY . /usr/src/app
+WORKDIR /usr/src/app
 
 RUN npm install
 
 CMD ["/bin/bash"]
 
 EXPOSE 8080
+
+COPY . /usr/src/app
 
 ENTRYPOINT ts-node main.ts
