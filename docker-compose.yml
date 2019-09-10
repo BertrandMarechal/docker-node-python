@@ -1,19 +1,23 @@
-version: '2'
+version: '3.2'
 
 services:
   python-deskew-mrz:
     build:
       context: ./python
       dockerfile: Dockerfile
-    ports:
-      - 80:8080
     volumes:
-      - image-shared-folder: /usr/src/app/data
+      - type: bind
+        source: ./images
+        target: /usr/src/app/data
   node-image-service:
     build:
       context: ./ts-node
       dockerfile: Dockerfile
     volumes:
-      - image-shared-folder: /usr/src/app/data
-volumes:
-  - image-shared-folder:
+      - type: bind
+        source: ./images
+        target: /usr/src/app/data
+    ports:
+      - 80:8080
+# volumes:
+#   ./images: image-shared-folder
